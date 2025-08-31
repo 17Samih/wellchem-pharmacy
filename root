@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Well-Chem Pharmacy - Seven Kings</title>
+  <meta name="description" content="Well-Chem Pharmacy, 641 High Rd, Seven Kings, Ilford IG3 8RA. NHS and private pharmacy services including contraception, emergency contraception, blood pressure checks, smoking cessation, travel clinic and more." />
+  <style>
+    :root{
+      --brand:#0a7669; /* teal */
+      --brand-dark:#075b50;
+      --bg:#f7faf9;
+      --text:#233; 
+      --muted:#5b6b6b;
+      --card:#fff;
+      --ring:rgba(10,118,105,0.2);
+      --radius:16px;
+    }
+    html,body{margin:0; padding:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial; color:var(--text); background:var(--bg); line-height:1.6}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{ text-decoration:underline }
+    header.hero{background:linear-gradient(150deg,var(--brand),var(--brand-dark)); color:#fff; padding:48px 20px 28px}
+    .container{max-width:1000px; margin:0 auto; padding:0 20px}
+    .hero h1{margin:0 0 8px; font-size:clamp(26px,5vw,40px)}
+    .hero p{margin:0; opacity:.95}
+
+    nav.sticky{position:sticky; top:0; z-index:50; background:#0f2f2c; display:flex; gap:16px; padding:10px 0; box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    nav.sticky .container{display:flex; flex-wrap:wrap; align-items:center; gap:12px}
+    nav.sticky a{color:#eafff8; font-weight:600; padding:8px 10px; border-radius:10px}
+    nav.sticky a:hover, nav.sticky a.active{background:rgba(255,255,255,.12)}
+
+    .grid{display:grid; gap:16px}
+    @media(min-width:800px){
+      .split{display:grid; grid-template-columns:1.2fr .8fr; gap:18px}
+    }
+
+    .card{background:var(--card); border-radius:var(--radius); padding:18px; box-shadow:0 6px 20px rgba(0,0,0,.06)}
+    h2{color:var(--brand-dark); margin:6px 0 8px; font-size:clamp(20px,3.2vw,28px)}
+    h3{margin:14px 0 6px; color:#123}
+    .muted{color:var(--muted)}
+    .badge{display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.2px; vertical-align:middle}
+    .badge.nhs{background:#e6f7ff; color:#075985; border:1px solid #bae6fd}
+    .badge.paid{background:#fff7ed; color:#9a3412; border:1px solid #fed7aa}
+    .badge.free{background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0}
+
+    details.service{border:1px solid #e7efee; border-radius:12px; padding:10px 12px; background:#fff}
+    details.service + details.service{margin-top:10px}
+    details.service summary{cursor:pointer; list-style:none; font-weight:700}
+    details.service summary::-webkit-details-marker{display:none}
+    .service-desc{margin:8px 0 0}
+    .chip{display:inline-block; font-size:12px; padding:2px 8px; border-radius:999px; background:#eef4f3; color:#244}
+
+    table.hours{width:100%; border-collapse:collapse}
+    table.hours th, table.hours td{padding:10px 8px; text-align:left; border-bottom:1px solid #e6eeec}
+    table.hours tr.highlight{background:#f0faf8}
+
+    .status{display:inline-flex; align-items:center; gap:8px; font-weight:700}
+    .dot{width:10px; height:10px; border-radius:50%}
+    .open{color:#065f46}
+    .open .dot{background:#10b981}
+    .closed{color:#7f1d1d}
+    .closed .dot{background:#ef4444}
+
+    .contact-grid{display:grid; gap:10px}
+    @media(min-width:640px){ .contact-grid{grid-template-columns:1fr 1fr} }
+
+    footer{margin:30px 0 0; padding:22px 0; background:#0f2f2c; color:#dafff5}
+    footer .small{font-size:13px; opacity:.9}
+    .btn{display:inline-block; padding:10px 14px; font-weight:700; border-radius:12px; background:var(--brand); color:#fff}
+    .btn:hover{filter:brightness(.95)}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Well-Chem Pharmacy</h1>
+      <p>Serving the community in Seven Kings</p>
+      <p class="muted">641 High Rd, Seven Kings, Ilford IG3 8RA · <a href="tel:+442085901624" style="color:#fff; text-decoration:underline">020 8590 1624</a> · <a href="mailto:wellchem.pharmacy@nhs.net" style="color:#fff; text-decoration:underline">wellchem.pharmacy@nhs.net</a></p>
+    </div>
+  </header>
+
+  <nav class="sticky">
+    <div class="container">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#hours">Opening Times</a>
+      <a href="#facilities">Facilities</a>
+      <a href="#contact">Contact</a>
+      <span id="openStatus" style="margin-left:auto"></span>
+    </div>
+  </nav>
+
+  <main class="container grid" id="about" aria-labelledby="about-title">
+    <section class="split">
+      <div class="card">
+        <h2 id="about-title">About Us</h2>
+        <p>Well-Chem Pharmacy is your local NHS and private pharmacy in Seven Kings. We provide expert healthcare advice, prescriptions and a wide range of clinical and healthy living services. A private consultation room is available.</p>
+        <p><a class="btn" href="https://maps.google.com/?q=Well-Chem+Pharmacy,+641+High+Rd,+Seven+Kings,+Ilford+IG3+8RA" target="_blank" rel="noopener">📍 Get Directions</a></p>
+      </div>
+      <aside class="card">
+        <h3>Contact at a glance</h3>
+        <p><strong>Address:</strong><br/>641 High Rd, Seven Kings, Ilford IG3 8RA</p>
+        <p><strong>Phone:</strong> <a href="tel:+442085901624">020 8590 1624</a><br/>
+           <strong>Email:</strong> <a href="mailto:wellchem.pharmacy@nhs.net">wellchem.pharmacy@nhs.net</a></p>
+        <p><strong>Consultation room:</strong> Available</p>
+      </aside>
+    </section>
+
+    <section id="services" class="card" aria-labelledby="services-title">
+      <h2 id="services-title">Our Services</h2>
+
+      <h3>Contraception services</h3>
+      <details class="service" open>
+        <summary>Condom supply <span class="badge nhs" aria-label="NHS service">NHS service</span></summary>
+        <div class="service-desc">
+          <p>Some young people can get free condoms. Ages allowed may vary between pharmacies due to local rules. Ask at this pharmacy for more details.</p>
+          <ul>
+            <li>Age restrictions may apply</li>
+            <li><span class="badge free">Free</span></li>
+            <li>No booking needed</li>
+            <li>Room available to talk privately</li>
+            <li>Walk-in service</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="service">
+        <summary>Emergency contraception <span class="badge nhs">NHS service</span></summary>
+        <div class="service-desc">
+          <p>The pharmacist will check if they can give you the emergency contraceptive pill, or may advise you where to get an intrauterine device (IUD) or coil.</p>
+          <ul>
+            <li>Age restrictions may apply</li>
+            <li><span class="badge free">Free</span></li>
+            <li>No booking needed</li>
+            <li>No prescription needed</li>
+            <li>Room available to talk privately</li>
+            <li>Walk-in service</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="service">
+        <summary>Emergency contraception <span class="badge paid">Paid service</span></summary>
+        <div class="service-desc">
+          <p>If needed, you may be able to buy the emergency contraceptive pill from this pharmacy if you are 16 or over, or the pharmacy can advise you where to get an intrauterine device (IUD) or coil.</p>
+          <ul>
+            <li>No booking needed</li>
+            <li>No prescription needed</li>
+            <li>Not free: you need to pay</li>
+            <li>Room available to talk privately</li>
+            <li>Walk-in service</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="service">
+        <summary>NHS pharmacy contraception service <span class="badge nhs">NHS service</span></summary>
+        <div class="service-desc">
+          <p>Get a new or ongoing supply of the contraceptive pill without needing to visit your GP. Your pharmacist will advise if this service is right for you.</p>
+          <ul>
+            <li>Booking may be needed: ask this pharmacy for details</li>
+            <li><span class="badge free">Free</span></li>
+            <li>No need to visit a GP first</li>
+            <li>No prescription needed</li>
+            <li>Room available to talk privately</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Healthy living services</h3>
+      <details class="service">
+        <summary>NHS health check <span class="badge nhs">NHS service</span></summary>
+        <div class="service-desc">
+          <p>Free health check-up for adults in England aged 40 to 74, to help spot early signs of dementia, heart disease, kidney disease, stroke, or type 2 diabetes.</p>
+          <ul>
+            <li>Adults aged 40 or over</li>
+            <li>Booking may be needed: ask this pharmacy for details</li>
+            <li><span class="badge free">Free</span></li>
+            <li>No need to visit a GP first</li>
+            <li>Room available to talk privately</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="service">
+        <summary>Stop smoking service <span class="badge nhs">NHS service</span></summary>
+        <div class="service-desc">
+          <p>Free advice and support from trained pharmacy staff to help you stop smoking. You may also be offered medicine or other nicotine-replacement products to help you quit.</p>
+          <ul>
+            <li>Age restrictions may apply</li>
+            <li>Booking may be needed: ask this pharmacy for details</li>
+            <li><span class="badge free">Free</span></li>
+            <li>Room available to talk privately</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="service">
+        <summary>Stop smoking service <span class="badge paid">Paid service</span></summary>
+        <div class="service-desc">
+          <p>Pay for advice and support from trained pharmacy staff to help you stop smoking. This pharmacy may recommend medicine or other nicotine-replacement products to buy to help you quit.</p>
+          <ul>
+            <li>Age restrictions may apply</li>
+            <li>Booking may be needed: ask this pharmacy for details</li>
+            <li>Not free: you need to pay</li>
+            <li>Room available to talk privately</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Prescription services</h3>
+      <details class="service">
+        <summary>Medical supplies (appliances) <span class="badge nhs">NHS service</span></summary>
+        <div class="service-desc">
+          <p>This pharmacy can provide medical supplies needed to manage a condition, on prescription from your GP.</p>
+          <ul>
+            <li>All ages</li>
+            <li>Prescription needed</li>
+            <li>You may need to pay for your prescription: ask this pharmacy for details</li>
+          </ul>
+        </div>
+      </details>
+      <details class="service">
+        <summary>New medicine service <span class="badge nhs">NHS service</span></summary>
+        <div class="service-desc">
+          <p>Support and advice when you start taking a new prescription medicine to treat some long-term conditions.</p>
+          <ul>
+            <li>All ages</li>
+            <li>Booking may be needed: ask this pharmacy for details</li>
+            <li><span class="badge free">Free</span></li>
+            <li>Prescription needed</li>
+            <li>Restrictions may apply</li>
+            <li>Room available to talk privately</li>
+          </ul>
+        </div>
+      </details>
+      <details class="service">
+        <summary>Prescription delivery service <span class="badge">Pharmacy customer service</span></summary>
+        <div class="service-desc">
+          <p>The pharmacy can deliver your prescription medicines to your home.</p>
+          <ul>
+            <li>All ages</li>
+            <li>Prescription needed</li>
+            <li>Register with pharmacy</li>
+            <li>Restrictions may apply</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Screening and test services</h3>
+      <details class="service">
+        <summary>Chlamydia screening and treatment <span class="badge nhs">NHS service</span></summary>
+        <div class="service-desc">
+          <p>Get a free chlamydia testing kit, guidance for how to use it plus advice on sexual health.</p>
+          <ul>
+            <li>Age restrictions may apply</li>
+            <li><span class="badge free">Free</span></li>
+            <li>Room available to talk privately</li>
+            <li>Walk-in service</li>
+          </ul>
+        </div>
+      </details>
+      <details class="service">
+        <summary>COVID-19 lateral flow tests <span class="badge nhs">NHS service</span></summary>
+        <div class="service-desc">
+          <p>If you’re eligible for COVID-19 treatment, you may be able to get free rapid lateral flow tests. Ask at this pharmacy for more details.</p>
+          <ul>
+            <li>All ages</li>
+            <li><span class="badge free">Free</span></li>
+            <li>No booking needed</li>
+            <li>Refer yourself: if you’re at higher risk of getting seriously ill from COVID-19</li>
+          </ul>
+        </div>
+      </details>
+      <details class="service">
+        <summary>NHS blood pressure check service <span class="badge nhs">NHS service</span></summary>
+        <div class="service-desc">
+          <p>Adults aged 40 or over can get their blood pressure checked for free unless they have high blood pressure or have had it checked in the last 6 months.</p>
+          <ul>
+            <li>Adults aged 40 or over (adults aged 35–39 with a family history or risk of heart disease may be tested too)</li>
+            <li>Booking may be needed: ask this pharmacy for details</li>
+            <li><span class="badge free">Free</span></li>
+            <li>No need to visit a GP first</li>
+            <li>Room available to talk privately</li>
+          </ul>
+        </div>
+      </details>
+      <details class="service">
+        <summary>Type 2 diabetes screening <span class="badge nhs">NHS service</span></summary>
+        <div class="service-desc">
+          <p>A free blood test to check if you are at risk of developing type 2 diabetes.</p>
+          <ul>
+            <li>Age restrictions may apply</li>
+            <li>Booking may be needed: ask this pharmacy for details</li>
+            <li><span class="badge free">Free</span></li>
+            <li>No need to visit a GP first</li>
+            <li>You may need to pay: ask this pharmacy for details</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3>Vaccination services</h3>
+      <details class="service">
+        <summary>Travel clinic <span class="badge paid">Paid service</span></summary>
+        <div class="service-desc">
+          <p>Pay for travel vaccines at this pharmacy which are not available for free from a GP, such as vaccines against rabies or yellow fever.</p>
+          <ul>
+            <li>All ages</li>
+            <li>Booking may be needed: ask this pharmacy for details</li>
+            <li>No need to visit a GP first</li>
+            <li>Not free: you need to pay</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <section id="hours" class="card" aria-labelledby="hours-title">
+      <h2 id="hours-title">Opening Times</h2>
+      <p class="status" id="statusRow"><span class="dot"></span><span id="statusText">Checking status…</span></p>
+      <table class="hours" aria-describedby="hours-notes">
+        <thead>
+          <tr><th scope="col">Day</th><th scope="col">Times</th></tr>
+        </thead>
+        <tbody id="hoursTable">
+          <tr data-day="1"><th scope="row">Monday</th><td>9:00am – 6:00pm</td></tr>
+          <tr data-day="2"><th scope="row">Tuesday</th><td>9:00am – 6:00pm</td></tr>
+          <tr data-day="3"><th scope="row">Wednesday</th><td>9:00am – 6:00pm</td></tr>
+          <tr data-day="4"><th scope="row">Thursday</th><td>9:00am – 6:00pm</td></tr>
+          <tr data-day="5"><th scope="row">Friday</th><td>9:00am – 6:00pm</td></tr>
+          <tr data-day="6"><th scope="row">Saturday</th><td>9:00am – 5:30pm</td></tr>
+          <tr data-day="0"><th scope="row">Sunday</th><td>Closed</td></tr>
+        </tbody>
+      </table>
+      <p id="hours-notes" class="muted">Bank Holiday hours may differ. Please call to confirm.</p>
+    </section>
+
+    <section id="facilities" class="card" aria-labelledby="facilities-title">
+      <h2 id="facilities-title">Facilities</h2>
+      <ul>
+        <li>Disabled parking</li>
+        <li>Wheelchair access</li>
+        <li>Step-free access</li>
+        <li>Car parking</li>
+        <li>Cycle parking</li>
+        <li>Disabled parking</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="card" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <div class="contact-grid">
+        <div>
+          <p><strong>Address</strong><br/>641 High Rd, Seven Kings, Ilford IG3 8RA</p>
+          <p><strong>Phone</strong><br/><a href="tel:+442085901624">020 8590 1624</a></p>
+          <p><strong>Email</strong><br/><a href="mailto:wellchem.pharmacy@nhs.net">wellchem.pharmacy@nhs.net</a></p>
+          <p><a class="btn" href="https://maps.google.com/?q=Well-Chem+Pharmacy,+641+High+Rd,+Seven+Kings,+Ilford+IG3+8RA" target="_blank" rel="noopener">Open in Google Maps</a></p>
+        </div>
+        <iframe title="Google Maps" style="width:100%; min-height:280px; border:0; border-radius:12px" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Well-Chem+Pharmacy,+641+High+Rd,+Seven+Kings,+Ilford+IG3+8RA&output=embed"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="small">© <span id="year"></span> Well-Chem Pharmacy · 641 High Rd, Seven Kings, Ilford IG3 8RA · Tel: 020 8590 1624</p>
+      <p class="small">Designed by Samih</p>
+    </div>
+  </footer>
+
+  <!-- Schema.org for better Google visibility -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Pharmacy",
+    "name": "Well-Chem Pharmacy",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "641 High Rd",
+      "addressLocality": "Seven Kings, Ilford",
+      "postalCode": "IG3 8RA",
+      "addressCountry": "GB"
+    },
+    "telephone": "+44 20 8590 1624",
+    "email": "wellchem.pharmacy@nhs.net",
+    "openingHoursSpecification": [
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"09:00","closes":"17:30"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"00:00","closes":"00:00","validFrom":"2025-01-01","validThrough":"2025-12-31"}
+    ]
+  }
+  </script>
+
+  <script>
+    // Highlight today's hours and show open/closed status (UK local time)
+    (function(){
+      const now = new Date();
+      const day = now.getDay(); // 0=Sun..6=Sat
+      const rows = document.querySelectorAll('#hoursTable tr');
+      rows.forEach(r=>{ if(+r.dataset.day === day) r.classList.add('highlight'); });
+
+      // Opening hours map (24h)
+      const hours = {
+        1: [9, 18], // Mon
+        2: [9, 18], // Tue
+        3: [9, 18], // Wed
+        4: [9, 18], // Thu
+        5: [9, 18], // Fri
+        6: [9, 17.5], // Sat 17:30
+        0: null // Sun closed
+      };
+
+      function isOpen(date){
+        const d = date.getDay();
+        const h = date.getHours() + date.getMinutes()/60;
+        const span = hours[d];
+        return span && h >= span[0] && h < span[1];
+      }
+
+      const statusRow = document.getElementById('statusRow');
+      const statusText = document.getElementById('statusText');
+      const openStatus = document.getElementById('openStatus');
+
+      const open = isOpen(now);
+      statusRow.classList.add(open? 'open':'closed');
+      statusText.textContent = open? 'We are open now' : 'We are currently closed';
+      openStatus.innerHTML = '<span class="status '+(open?'open':'closed')+'"><span class="dot"></span>'+(open?'Open now':'Closed')+'</span>';
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Basic active link highlight while scrolling
+      const links = document.querySelectorAll('nav.sticky a');
+      const sections = [...links].map(a=> document.querySelector(a.getAttribute('href')));
+      const onScroll = () => {
+        const y = window.scrollY + 120;
+        sections.forEach((sec,i)=>{
+          if(!sec) return;
+          const r = sec.getBoundingClientRect();
+          const top = r.top + window.scrollY; const bottom = top + sec.offsetHeight;
+          links[i].classList.toggle('active', y >= top && y < bottom);
+        });
+      };
+      document.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
+    })();
+  </script>
+</body>
+</html>
+
